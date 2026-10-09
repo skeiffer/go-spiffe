@@ -41,6 +41,18 @@ The X509-SVIDs are presented by each peer and authenticated against the X.509
 bundles. Both sides continue to be updated with X509-SVIDs and X.509 bundles
 streamed from the Workload API (e.g. secret rotation).
 
+## Experimental provider-owned workload keys
+
+The `workloadkeyapi` package adds opt-in source and signer contracts. A source
+accepts an existing `crypto.Signer` and strictly increasing generations. The RPC
+signer reauthorizes each SHA-256 signing operation through its configured client
+and rejects expired capabilities. Local-reference and remote-sign modes are
+explicit; no private-key serialization or standard Workload API fallback is
+provided by this package.
+
+These contracts are not a replacement transport for the standard Workload API.
+Existing standard clients and TLS behavior remain unchanged.
+
 ## Examples
 
 The [examples](./examples) directory contains rich examples for a variety of circumstances.
